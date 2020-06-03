@@ -9,4 +9,17 @@ import { connect } from 'react-redux';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
 
-console.log('hello world');
+const DefaultState = {
+    power: true,
+    volume: 0,
+    bank: 'heaterKit',
+    heaterkit: {q: ['Heater1', '<audio src = "#"> </audio>']}
+
+}
+const reducer = function(state = DefaultState ) {
+    return state
+}
+
+let store = createStore(reducer);
+
+console.log(store.getState());
