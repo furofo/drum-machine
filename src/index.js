@@ -14,44 +14,35 @@ const SUBTRACTVOLUME = 'SUBTRACTVOLUME';
 
 
 
-const powerReducer = (state = {power: true}, action) => {
+const powerReducer = (state = true, action) => {
     switch(action.type) {
         case ACTION:
-            return {
-                power: false
-            }
+            return !state
         default: 
             return state
 }
 }
-const volumeReducer = (state = {volume: 0}, action) => {
+const volumeReducer = (state = 0, action) => {
     switch(action.type) {
         case ADDVOLUME: 
-            return {
-                volume: state.volume + action.addValue
-            }
+            return state.volume + action.addValue;
         
 
         case SUBTRACTVOLUME:
-            return {
-                volume: state.volume - action.subtractValue
-            }
+            return state.volume - state.subtractValue;
+
         default:
             return state
         
     }
 }
 
-const kitReducer = (state = {kit: 'heaterKit'}, action) => {
+const kitReducer = (state = 'heaterKit', action) => {
     switch(action.type) {
         case 'pianoKit':
-            return {
-                kit: 'pianoKit'
-            }
+            return 'pianoKit'
         case 'heaterKit':
-            return {
-                kit: 'heaterKit'
-            }
+            return 'heaterKit'
         default:
             return state
     }
