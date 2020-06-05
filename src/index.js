@@ -8,12 +8,17 @@ import { connect } from 'react-redux';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
 import { combineReducers } from 'redux'
+
+// const declarations
 const ACTION = 'ACTION';
 const ADDVOLUME = 'ADDVOLUME';
 const SUBTRACTVOLUME = 'SUBTRACTVOLUME';
 
 
+// reudux logic
 
+
+//reducer to be combined in one reducer
 const powerReducer = (state = true, action) => {
     switch(action.type) {
         case ACTION:
@@ -25,11 +30,12 @@ const powerReducer = (state = true, action) => {
 const volumeReducer = (state = 0, action) => {
     switch(action.type) {
         case ADDVOLUME: 
-            return state.volume + action.addValue;
+            console.log(action.addValue);
+            return state + parseInt(action.addValue);
         
 
         case SUBTRACTVOLUME:
-            return state.volume - state.subtractValue;
+            return state - parseInt(action.subtractValue);
 
         default:
             return state
@@ -49,17 +55,93 @@ const kitReducer = (state = 'heaterKit', action) => {
 }
 
 
-
+// this is reducer that will combine all reducers
 const rootReducer = combineReducers({
     power: powerReducer,
     volume: volumeReducer,
     kit: kitReducer,
 })
 
+
 let store = createStore(rootReducer);
 
-console.log(store.getState());
-store.dispatch({type: ACTION});
-console.log(store.getState());
-store.dispatch({type: 'pianoKit'});
-console.log(store.getState());
+
+
+//react Logic
+
+class DrumContainer extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+    componentDidMount() {
+        console.log('logging props...');
+        console.log(this.props);
+        this.props.actionDispatch();
+        console.log('loggin props again');
+        console.log(this.props);
+        this.props.volumeDispatch(70, 'ADD');
+        console.log(this.props);
+        this.props.volumeDispatch(40, 'SUBTRACT');
+        console.log(this.props);
+    }
+    componentDidUpdate() {
+        console.log("third time?");
+        console.log(this.props);
+    }
+    render(){
+        return(
+            <div>
+                <p>Hello World</p>
+            </div>
+        )
+    }
+}
+
+
+
+//react-reduxLogic
+
+const mapStateToProps = (state) => {
+    return {
+        power: state.power,
+        volume: state.volume,
+        kit: state.kit
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actionDispatch: () => {
+            dispatch({type: ACTION})
+        },
+        kitDispatch: (kitType) => {
+            dispatch({type: kitType})
+        },
+        volumeDispatch: (volume, addOrSubtract) => {
+            if(addOrSubtract == 'ADD'){
+                dispatch({type: ADDVOLUME, addValue: volume})
+
+            }
+            else {
+                dispatch({type: SUBTRACTVOLUME, subtractValue: volume});
+            }
+           
+        }
+    }
+}
+
+const Container = connect(mapStateToProps, mapDispatchToProps)(DrumContainer);
+class DrumContent extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return(
+            <Provider store = {store}>
+                <Container />
+            </Provider> 
+        );
+    }
+}
+ReactDom.render(<DrumContent />, document.getElementById('root'));
