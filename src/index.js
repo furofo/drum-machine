@@ -94,7 +94,11 @@ class DrumContainer extends React.Component {
             <div id = "drum-machine">
             <div class = "absolute-center">
             <div id = "drum-machine-content">
-                <p> Hello There </p>
+                <div class = "drum-machine-row">
+                    <button class = "drum-machine-button"> Q </button>
+                    <button class = "drum-machine-button"> W </button>
+                    <button class = "drum-machine-button"> E </button>
+                </div>
             </div>
             </div>
                 

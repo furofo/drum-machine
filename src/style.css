@@ -13,5 +13,15 @@ body{
 }
 
 #drum-machine-content {
-    background-color: green;
+    width: 70%;
+    background-color: #B3B3B3;
+}
+.drum-machine-row {
+    display: flex;
+    justify-content: center;
+}
+
+.drum-machine-button {
+    padding: 1em;
+    background-color: #808080;
 }
