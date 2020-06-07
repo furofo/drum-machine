@@ -15,6 +15,9 @@ body{
 #drum-machine-content {
     width: 70%;
     background-color: #B3B3B3;
+    border-style: solid;
+    border-color: #FFA500;
+    border-width: 3px;
 }
 .drum-machine-row {
     display: flex;
