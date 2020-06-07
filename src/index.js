@@ -99,6 +99,18 @@ class DrumContainer extends React.Component {
                     <button class = "drum-machine-button"> W </button>
                     <button class = "drum-machine-button"> E </button>
                 </div>
+
+                <div class = "drum-machine-row">
+                    <button class = "drum-machine-button"> A </button>
+                    <button class = "drum-machine-button"> S </button>
+                    <button class = "drum-machine-button"> D </button>
+                </div>
+
+                <div class = "drum-machine-row">
+                    <button class = "drum-machine-button"> Z </button>
+                    <button class = "drum-machine-button"> X </button>
+                    <button class = "drum-machine-button"> C </button>
+                </div>
             </div>
             </div>
                 

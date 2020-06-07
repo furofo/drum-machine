@@ -22,9 +22,12 @@ body{
 .drum-machine-row {
     display: flex;
     justify-content: center;
+    margin-bottom: -0.5em;
 }
 
 .drum-machine-button {
+    margin-top: 1em;
     padding: 1em;
     background-color: #808080;
+    margin-right: .3em;
 }
