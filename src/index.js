@@ -91,8 +91,13 @@ class DrumContainer extends React.Component {
     }
     render(){
         return(
-            <div>
-                <p>Hello World</p>
+            <div id = "drum-machine">
+            <div class = "absolute-center">
+            <div id = "drum-machine-content">
+                <p> Hello There </p>
+            </div>
+            </div>
+                
             </div>
         )
     }
