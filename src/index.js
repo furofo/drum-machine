@@ -66,6 +66,11 @@ const rootReducer = combineReducers({
 let store = createStore(rootReducer);
 
 
+/*let buttonClick = function () {
+    console.log('a button was clicked hello there');
+   console.log(this);
+  $(this).css("background-color", "yellow");
+} */
 
 //react Logic
 
@@ -73,12 +78,10 @@ class DrumContainer extends React.Component {
     constructor(props) {
         super(props)
 
-        this.buttonClick = this.buttonClick.bind(this);
+       
     }
 
-    buttonClick = () => {
-        console.log('a button was clicked hello there');
-    }
+    
 
     componentDidMount() {
         console.log('logging props...');
@@ -90,6 +93,10 @@ class DrumContainer extends React.Component {
         console.log(this.props);
         this.props.volumeDispatch(40, 'SUBTRACT');
         console.log(this.props);
+        $(".drum-machine-button").click(function() {
+            console.log(this);
+            $(this).css('background-color', 'yellow');
+        }); 
     }
     componentDidUpdate() {
         console.log("third time?");
@@ -101,21 +108,21 @@ class DrumContainer extends React.Component {
             <div class = "absolute-center">
             <div id = "drum-machine-content">
                 <div class = "drum-machine-row">
-                    <button class = "drum-machine-button" onClick = {this.buttonClick}> Q </button>
-                    <button class = "drum-machine-button" onClick = {this.buttonClick}> W </button>
-                    <button class = "drum-machine-button" onClick = {this.buttonClick}> E </button>
+                    <button class = "drum-machine-button" > Q </button>
+                    <button class = "drum-machine-button" > W </button>
+                    <button class = "drum-machine-button" > E </button>
                 </div>
 
                 <div class = "drum-machine-row">
-                    <button class = "drum-machine-button" onClick = {this.buttonClick}> A </button>
-                    <button class = "drum-machine-button" onClick = {this.buttonClick}> S </button>
-                    <button class = "drum-machine-button" onClick = {this.buttonClick}> D </button>
+                    <button class = "drum-machine-button" > A </button>
+                    <button class = "drum-machine-button" > S </button>
+                    <button class = "drum-machine-button" > D </button>
                 </div>
 
                 <div class = "drum-machine-row">
-                    <button class = "drum-machine-button" onClick = {this.buttonClick}> Z </button>
-                    <button class = "drum-machine-button" onClick = {this.buttonClick}> X </button>
-                    <button class = "drum-machine-button" onClick = {this.buttonClick}> C </button>
+                    <button class = "drum-machine-button" > Z </button>
+                    <button class = "drum-machine-button" > X </button>
+                    <button class = "drum-machine-button" > C </button>
                 </div>
             </div>
             </div>
