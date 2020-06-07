@@ -22,12 +22,17 @@ body{
 .drum-machine-row {
     display: flex;
     justify-content: center;
-    margin-bottom: -0.5em;
+    margin-bottom: -0.5em; /* had to override styling of flexs row separation a bit too much here */
+}
+
+.drum-machine-row:last-of-type {
+    margin-bottom: 1em; /* a little bit of margin for bottom class */
 }
 
 .drum-machine-button {
     margin-top: 1em;
-    padding: 1em;
+    padding: 1.5em 2em 1.5em 2em;
     background-color: #808080;
     margin-right: .3em;
+    border-radius: 5px;
 }
