@@ -94,8 +94,10 @@ class DrumContainer extends React.Component {
         this.props.volumeDispatch(40, 'SUBTRACT');
         console.log(this.props);
         $(".drum-machine-button").click(function() {
-            console.log(this);
-            $(this).css('background-color', 'yellow');
+            let button = this;
+            
+            $(this).css('background-color', '#FFA500');
+            setTimeout(function(){$(button).css('background-color', '#808080'); }, 100);
         }); 
     }
     componentDidUpdate() {
