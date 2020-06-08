@@ -76,8 +76,8 @@ let store = createStore(rootReducer);
 } */
 
 //react Logic
-function playAudio() {
-    var audio = document.getElementById('Q');
+function playAudio(id) {
+    var audio = document.getElementById(id);
     if (audio.paused) {
         audio.play();
     }else{
@@ -103,9 +103,11 @@ class DrumContainer extends React.Component {
         console.log(this.props);
         this.props.volumeDispatch(40, 'SUBTRACT');
         console.log(this.props);
-        $(".drum-machine-button").click(function() {
+        $(".drum-machine-button").click(function(event) {
             let button = this;
-            playAudio();
+            console.log('event is');
+            console.log(event.target.id);
+            playAudio('Q');
             $(button).css('background-color', '#FFA500');
             
             setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
