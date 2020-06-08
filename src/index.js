@@ -54,6 +54,9 @@ const kitReducer = (state = 'heaterKit', action) => {
     }
 }
 
+const pianoKitSounds = {
+    Q: <audio class = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>
+}
 
 // this is reducer that will combine all reducers
 const rootReducer = combineReducers({
@@ -73,7 +76,9 @@ let store = createStore(rootReducer);
 } */
 
 //react Logic
-
+function playAudio() {
+    document.getElementById('Q').play();
+}
 class DrumContainer extends React.Component {
     constructor(props) {
         super(props)
@@ -95,9 +100,10 @@ class DrumContainer extends React.Component {
         console.log(this.props);
         $(".drum-machine-button").click(function() {
             let button = this;
-            
+            playAudio();
             $(this).css('background-color', '#FFA500');
-            setTimeout(function(){$(button).css('background-color', '#808080'); }, 100);
+            
+            setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
         }); 
     }
     componentDidUpdate() {
@@ -110,7 +116,7 @@ class DrumContainer extends React.Component {
             <div class = "absolute-center">
             <div id = "drum-machine-content">
                 <div class = "drum-machine-row">
-                    <button class = "drum-machine-button" > Q </button>
+                    <button class = "drum-machine-button" > <audio class = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>Q </button>
                     <button class = "drum-machine-button" > W </button>
                     <button class = "drum-machine-button" > E </button>
                 </div>
