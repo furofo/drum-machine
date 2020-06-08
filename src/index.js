@@ -77,7 +77,12 @@ let store = createStore(rootReducer);
 
 //react Logic
 function playAudio() {
-    document.getElementById('Q').play();
+    var audio = document.getElementById('Q');
+    if (audio.paused) {
+        audio.play();
+    }else{
+        audio.currentTime = 0
+    }
 }
 class DrumContainer extends React.Component {
     constructor(props) {
@@ -101,7 +106,7 @@ class DrumContainer extends React.Component {
         $(".drum-machine-button").click(function() {
             let button = this;
             playAudio();
-            $(this).css('background-color', '#FFA500');
+            $(button).css('background-color', '#FFA500');
             
             setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
         }); 
