@@ -154,8 +154,14 @@ class DrumContainer extends React.Component {
                 <div class ='display-container'>
                 <div id = "display">
                 </div>
-
                 </div>
+
+                <div class = "slide-container">
+                
+                <input type="range" min="0" max = "100" value ="100" class ="slider2" id = "myRange"/>
+                
+                </div>
+
                 </div>
                 
             </div>
