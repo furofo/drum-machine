@@ -42,6 +42,19 @@ body{
   display: flex;
   justify-content: center;
 }
+#power-text {
+    margin-top: 2em;
+
+}
+#power-text h3 {
+    margin-bottom: 5px;
+    
+}
+
+.powerbutton{
+    
+    margin-bottom: 1em;
+}
 .switch{
   position: relative;
   display: inline-block;

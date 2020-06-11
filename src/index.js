@@ -139,13 +139,17 @@ class DrumContainer extends React.Component {
                     <button class = "drum-machine-button" > X </button>
                     <button class = "drum-machine-button" > C </button>
                 </div>
-            </div>
-            <div class = "center">
+                <div class = "center" id="power-text">
+                         <h3>Power</h3>
+                </div>
+                <div class = "center powerbutton">
                 <label class = "switch">
                     <input type = "checkbox" />
                      <span class = "slider"></span>  
                 </label>
             </div>
+            </div>
+            
             </div>
                 
             </div>
