@@ -69,8 +69,23 @@ body{
 }
 
 .powerbutton{
-    
+  
     margin-bottom: 1em;
+}
+
+
+.display-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+#display {
+    width: 50%;
+    background-color: #808080;
+    height: 2em;
+    margin-bottom: 2em;
 }
 .switch{
   position: relative;
@@ -130,5 +145,14 @@ input:checked + .slider:before {
 
     .numpad {
         width: 50%;
+    }
+
+    .display-container{
+        width: 50%
+    }
+    #display {
+        width: 80%;
+        height: 2.5em;
+        
     }
 }

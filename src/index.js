@@ -151,7 +151,13 @@ class DrumContainer extends React.Component {
                      <span class = "slider"></span>  
                 </label>
                 </div>
+                <div class ='display-container'>
+                <div id = "display">
                 </div>
+
+                </div>
+                </div>
+                
             </div>
             
             </div>
