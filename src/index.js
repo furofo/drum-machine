@@ -122,6 +122,7 @@ class DrumContainer extends React.Component {
             <div id = "drum-machine">
             <div class = "absolute-center">
             <div id = "drum-machine-content">
+            <div class ="numpad">
                 <div class = "drum-machine-row">
                     <button class = "drum-machine-button" > <audio class = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>Q </button>
                     <button class = "drum-machine-button" > W </button>
@@ -139,6 +140,8 @@ class DrumContainer extends React.Component {
                     <button class = "drum-machine-button" > X </button>
                     <button class = "drum-machine-button" > C </button>
                 </div>
+                </div>
+                <div class ="buttons">
                 <div class = "center" id="power-text">
                          <h3>Power</h3>
                 </div>
@@ -147,7 +150,8 @@ class DrumContainer extends React.Component {
                     <input type = "checkbox" />
                      <span class = "slider"></span>  
                 </label>
-            </div>
+                </div>
+                </div>
             </div>
             
             </div>
