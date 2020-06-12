@@ -14,6 +14,7 @@ const ACTION = 'ACTION';
 const ADDVOLUME = 'ADDVOLUME';
 const SUBTRACTVOLUME = 'SUBTRACTVOLUME';
 const CURRENTVOLUME = 'CURRENTVOLUME';
+const DISPLAY = "DISPLAY";
 
 
 // reudux logic
@@ -57,6 +58,14 @@ const kitReducer = (state = 'heaterKit', action) => {
     }
 }
 
+const displayReducer = (state = 'hurrdurr', action) => {
+   switch(action.type)  {
+       case DISPLAY:
+           return action.displayText;
+        default:
+            return state;
+   }
+}
 const pianoKitSounds = {
     Q: <audio className = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>
 }
@@ -66,6 +75,7 @@ const rootReducer = combineReducers({
     power: powerReducer,
     volume: volumeReducer,
     kit: kitReducer,
+    displayText: displayReducer,
 })
 
 
@@ -149,6 +159,7 @@ class DrumContainer extends React.Component {
                 </div>
                 <div className ='display-container'>
                 <div id = "display">
+                    <p id = "display-text">{this.props.displayText}</p>
                 </div>
                 </div>
                 <div className = "slidecontainer">
@@ -184,7 +195,8 @@ const mapStateToProps = (state) => {
     return {
         power: state.power,
         volume: state.volume,
-        kit: state.kit
+        kit: state.kit,
+        displayText: state.displayText,
     }
 }
 
@@ -208,6 +220,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         currentVolumeDispatch: (volume) => {
             dispatch({type: CURRENTVOLUME, currentVolume: volume});
+        },
+        displayDispatch: (text) => {
+            dispatch({type: DISPLAY, displayText: text})
         }
     }
 }

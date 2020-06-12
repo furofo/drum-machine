@@ -57,6 +57,7 @@ body{
   width: 100%;
   display: flex;
   justify-content: center;
+  
 }
 #power-text {
     margin-top: 2em;
@@ -95,6 +96,7 @@ body{
     background-color: #808080;
     height: 3em;
     margin-bottom: 2em;
+    text-align: center;
 }
 .switch{
   position: relative;
