@@ -106,7 +106,9 @@ class DrumContainer extends React.Component {
     }
     handleChange(event) {
         this.props.currentVolumeDispatch(event.target.value);
-        this.props.displayDispatch(event.target.value);
+        setTimeout(function(){$('#display-text').fadeIn()}, 10);
+        $('#display-text').html('Volume' + this.props.displayDispatch(event.target.value));
+        setTimeout(function(){$('#display-text').fadeOut()}, 2000);
     }
     
 
@@ -119,6 +121,7 @@ class DrumContainer extends React.Component {
             $(button).css('background-color', '#FFA500');
             
             setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
+            
         }); 
     }
     componentDidUpdate() {
