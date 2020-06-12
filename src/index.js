@@ -106,6 +106,7 @@ class DrumContainer extends React.Component {
     }
     handleChange(event) {
         this.props.currentVolumeDispatch(event.target.value);
+        this.props.displayDispatch(event.target.value);
     }
     
 
