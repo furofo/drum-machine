@@ -95,10 +95,7 @@ class DrumContainer extends React.Component {
        
     }
     handleChange(event) {
-        console.log('hello there traveller...');
-        console.log(this.props.volume);
         this.props.currentVolumeDispatch(event.target.value);
-
     }
     
 
@@ -150,15 +147,22 @@ class DrumContainer extends React.Component {
                      <span className = "slider"></span>  
                 </label>
                 </div>
-                <div classNameName ='display-container'>
+                <div className ='display-container'>
                 <div id = "display">
                 </div>
                 </div>
-
                 <div className = "slidecontainer">
-                
                 <input type="range" min="0" max = "100"  value = {this.props.volume} onChange = {this.handleChange} classNameName="slider2" id = "myRange"/>
-                
+                </div>
+
+                <div className = "center" id="bank-text">
+                         <h3>Bank</h3>
+                </div>
+                <div className = "center powerbutton">
+                <label className = "switch">
+                    <input type = "checkbox" />
+                     <span className = "slider"></span>  
+                </label>
                 </div>
 
                 </div>
