@@ -150,9 +150,9 @@ body{
   }
   
   .slider2{
-    -webkitapperance: none;
+    /*-webkit-appearance: none; */
     width: 100%;
-    apperance: none;
+    /*appearance: none; */
     height: 25px;
     background: #d3d3d3;
     outline: none;

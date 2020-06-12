@@ -13,6 +13,7 @@ import { combineReducers } from 'redux'
 const ACTION = 'ACTION';
 const ADDVOLUME = 'ADDVOLUME';
 const SUBTRACTVOLUME = 'SUBTRACTVOLUME';
+const CURRENTVOLUME = 'CURRENTVOLUME';
 
 
 // reudux logic
@@ -27,8 +28,10 @@ const powerReducer = (state = true, action) => {
             return state
 }
 }
-const volumeReducer = (state = 0, action) => {
+const volumeReducer = (state = 100, action) => {
     switch(action.type) {
+        case CURRENTVOLUME:
+            return action.currentVolume;
         case ADDVOLUME: 
             console.log(action.addValue);
             return state + parseInt(action.addValue);
@@ -46,16 +49,16 @@ const volumeReducer = (state = 0, action) => {
 const kitReducer = (state = 'heaterKit', action) => {
     switch(action.type) {
         case 'pianoKit':
-            return 'pianoKit'
+            return 'pianoKit';
         case 'heaterKit':
-            return 'heaterKit'
+            return 'heaterKit';
         default:
-            return state
+            return state;
     }
 }
 
 const pianoKitSounds = {
-    Q: <audio class = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>
+    Q: <audio className = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>
 }
 
 // this is reducer that will combine all reducers
@@ -88,21 +91,18 @@ class DrumContainer extends React.Component {
     constructor(props) {
         super(props)
 
+        this.handleChange = this.handleChange.bind(this);
        
     }
+    handleChange(event) {
+        console.log('hello there traveller...');
+        console.log(this.props.volume);
+        this.props.currentVolumeDispatch(event.target.value);
 
+    }
     
 
     componentDidMount() {
-        console.log('logging props...');
-        console.log(this.props);
-        this.props.actionDispatch();
-        console.log('loggin props again');
-        console.log(this.props);
-        this.props.volumeDispatch(70, 'ADD');
-        console.log(this.props);
-        this.props.volumeDispatch(40, 'SUBTRACT');
-        console.log(this.props);
         $(".drum-machine-button").click(function(event) {
             let button = this;
             console.log('event is');
@@ -114,51 +114,50 @@ class DrumContainer extends React.Component {
         }); 
     }
     componentDidUpdate() {
-        console.log("third time?");
-        console.log(this.props);
+        
     }
     render(){
         return(
             <div id = "drum-machine">
-            <div class = "absolute-center">
+            <div className = "absolute-center">
             <div id = "drum-machine-content">
-            <div class ="numpad">
-                <div class = "drum-machine-row">
-                    <button class = "drum-machine-button" > <audio class = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>Q </button>
-                    <button class = "drum-machine-button" > W </button>
-                    <button class = "drum-machine-button" > E </button>
+            <div className ="numpad">
+                <div className = "drum-machine-row">
+                    <button className = "drum-machine-button" > <audio className = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>Q </button>
+                    <button className = "drum-machine-button" > W </button>
+                    <button className = "drum-machine-button" > E </button>
                 </div>
 
-                <div class = "drum-machine-row">
-                    <button class = "drum-machine-button" > A </button>
-                    <button class = "drum-machine-button" > S </button>
-                    <button class = "drum-machine-button" > D </button>
+                <div className = "drum-machine-row">
+                    <button className = "drum-machine-button" > A </button>
+                    <button className = "drum-machine-button" > S </button>
+                    <button className = "drum-machine-button" > D </button>
                 </div>
 
-                <div class = "drum-machine-row">
-                    <button class = "drum-machine-button" > Z </button>
-                    <button class = "drum-machine-button" > X </button>
-                    <button class = "drum-machine-button" > C </button>
+                <div className = "drum-machine-row">
+                    <button className = "drum-machine-button" > Z </button>
+                    <button className = "drum-machine-button" > X </button>
+                    <button className = "drum-machine-button" > C </button>
                 </div>
                 </div>
-                <div class ="buttons">
-                <div class = "center" id="power-text">
+                <div className ="buttons">
+                <div className = "center" id="power-text">
                          <h3>Power</h3>
                 </div>
-                <div class = "center powerbutton">
-                <label class = "switch">
+                <div className = "center powerbutton">
+                <label className = "switch">
                     <input type = "checkbox" />
-                     <span class = "slider"></span>  
+                     <span className = "slider"></span>  
                 </label>
                 </div>
-                <div class ='display-container'>
+                <div classNameName ='display-container'>
                 <div id = "display">
                 </div>
                 </div>
 
-                <div class = "slide-container">
+                <div className = "slidecontainer">
                 
-                <input type="range" min="0" max = "100" value ="100" class ="slider2" id = "myRange"/>
+                <input type="range" min="0" max = "100"  value = {this.props.volume} onChange = {this.handleChange} classNameName="slider2" id = "myRange"/>
                 
                 </div>
 
@@ -202,6 +201,9 @@ const mapDispatchToProps = (dispatch) => {
                 dispatch({type: SUBTRACTVOLUME, subtractValue: volume});
             }
            
+        },
+        currentVolumeDispatch: (volume) => {
+            dispatch({type: CURRENTVOLUME, currentVolume: volume});
         }
     }
 }
