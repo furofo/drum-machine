@@ -72,6 +72,34 @@ const heaterKitReducer = (state = {
     W: {
         name: 'Heater-2',
         url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3'
+    },
+    E: {
+        name: 'Heater-3',
+        url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3',
+    },
+    A: {
+        name: 'Heater-4',
+        url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3',
+    },
+    S: {
+        name: 'Heater-6',
+        url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3'
+    },
+    D: {
+        name: 'Drums Oh',
+        url: 'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3',
+    },
+    Z: {
+        name: 'Kick and Hat',
+        url: 'https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3',
+    },
+    X: {
+        name: 'Kick 1',
+        url: 'https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3',
+    },
+    C: {
+        name: 'Cev H2',
+        url: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3',
     }
                                     }) => {
     return state;
@@ -164,19 +192,19 @@ class DrumContainer extends React.Component {
                 <div className = "drum-machine-row">
                     <button className = "drum-machine-button" onClick = {this.handleClick} value = 'yes'> <audio className = "clip"  id = 'Q' src = ""></audio>Q </button>
                     <button className = "drum-machine-button" onClick = {this.handleClick}  >  <audio className = "clip"  id = 'W' src = ""></audio>W </button>
-                    <button className = "drum-machine-button" onClick = {this.handleClick} > <audio className = "clip"  id = 'E' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"></audio> E </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick} > <audio className = "clip"  id = 'E' src = ""></audio> E </button>
                 </div>
 
                 <div className = "drum-machine-row">
-                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'A' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"></audio>A </button>
-                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'S' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"></audio>S </button>
-                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'D' src = "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"></audio>D </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'A' src = ""></audio>A </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'S' src = ""></audio>S </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'D' src = ""></audio>D </button>
                 </div>
 
                 <div className = "drum-machine-row">
-                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'Z' src = "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"></audio>Z </button>
-                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'X' src = "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"></audio>X </button>
-                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'C' src = "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"></audio>C </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'Z' src = ""></audio>Z </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'X' src = ""></audio>X </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'C' src = ""></audio>C </button>
                 </div>
                 </div>
                 <div className ="buttons">
