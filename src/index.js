@@ -104,6 +104,17 @@ const heaterKitReducer = (state = {
                                     }) => {
     return state;
 };
+
+const pianoKitReducer = (
+    state = {
+        Q: {
+            name: 'Chord 1',
+            url: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3',
+        },
+    }
+) => {
+    return state;
+}
 const pianoKitSounds = {
     Q: <audio className = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>
 }
@@ -115,6 +126,7 @@ const rootReducer = combineReducers({
     kit: kitReducer,
     displayText: displayReducer,
     heaterKit: heaterKitReducer,
+    pianoKit: pianoKitReducer,
 })
 
 
@@ -162,9 +174,8 @@ class DrumContainer extends React.Component {
        $(button).css('background-color', '#FFA500');
             
      setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
-        console.log('okay this was clicked again');
-        console.log(this.props);
-    $('#display-text').html(id);
+       
+    $('#display-text').html(this.props.heaterKit[id].name);
     }
 
     componentDidMount() {
@@ -258,6 +269,7 @@ const mapStateToProps = (state) => {
         kit: state.kit,
         displayText: state.displayText,
         heaterKit: state.heaterKit,
+        pianoKit: state.pianoKit,
     }
 }
 
