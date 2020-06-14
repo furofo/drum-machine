@@ -47,9 +47,9 @@ const volumeReducer = (state = 100, action) => {
 const kitReducer = (state = 'heaterKit', action) => {
     switch(action.type) {
         case 'pianoKit':
-            return 'pianoKit';
-        case 'heaterKit':
             return 'heaterKit';
+        case 'heaterKit':
+            return 'pianoKit';
         default:
             return state;
     }
@@ -165,6 +165,8 @@ class DrumContainer extends React.Component {
     
     handleClick(event) {
         if(this.props.power){
+        
+        if(this.props.kit == 'heaterKit'){
         console.log(event.target);
         //console.log('id ' + id);
        // playAudio(event.target.childNodes[1]);
@@ -180,6 +182,24 @@ class DrumContainer extends React.Component {
        
     $('#display-text').html(this.props.heaterKit[id].name);
         }
+
+        else {
+      let id = $(event.target.childNodes[1]).attr('id');
+       
+       let button = event.target;
+       $('#' +id).attr('src', this.props.pianoKit[id].url);
+       console.log($(id).attr('src'));
+       playAudio(id);
+       $(button).css('background-color', '#FFA500');
+            
+     setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
+           
+        }
+
+            }
+
+
+
         else {
             console.log('make sure power is turned on!');
         }
@@ -193,7 +213,8 @@ class DrumContainer extends React.Component {
     }
 
     bankButtonClick() {
-        console.log('bank button was clicked!');
+       this.props.kitDispatch(this.props.kit);
+       console.log(this.props.kit);
     }
 
     componentDidMount() {
