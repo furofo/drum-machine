@@ -63,6 +63,15 @@ const displayReducer = (state = '', action) => {
             return state;
    }
 }
+
+const heaterKitReducer = (state = {
+    Q: {
+        name: 'Heater-1', 
+        url:'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3',
+    }
+                                    }) => {
+    return state;
+};
 const pianoKitSounds = {
     Q: <audio className = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>
 }
@@ -73,6 +82,7 @@ const rootReducer = combineReducers({
     volume: volumeReducer,
     kit: kitReducer,
     displayText: displayReducer,
+    heaterKit: heaterKitReducer,
 })
 
 
