@@ -153,6 +153,7 @@ class DrumContainer extends React.Component {
         super(props)
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.bankButtonClick = this.bankButtonClick.bind(this);
     }
     handleChange(event) {
         this.props.currentVolumeDispatch(event.target.value);
@@ -176,6 +177,10 @@ class DrumContainer extends React.Component {
      setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
        
     $('#display-text').html(this.props.heaterKit[id].name);
+    }
+
+    bankButtonClick() {
+        console.log('bank button was clicked!');
     }
 
     componentDidMount() {
@@ -243,7 +248,7 @@ class DrumContainer extends React.Component {
                 <div className = "center powerbutton">
                 <label className = "switch">
                     <input type = "checkbox" />
-                     <span className = "slider"></span>  
+                     <span className = "slider" id = "bank-button" onClick = {this.bankButtonClick}></span>  
                 </label>
                 </div>
 
