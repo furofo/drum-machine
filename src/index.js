@@ -68,6 +68,10 @@ const heaterKitReducer = (state = {
     Q: {
         name: 'Heater-1', 
         url:'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3',
+    },
+    W: {
+        name: 'Heater-2',
+        url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3'
     }
                                     }) => {
     return state;
@@ -122,7 +126,10 @@ class DrumContainer extends React.Component {
         //console.log('id ' + id);
        // playAudio(event.target.childNodes[1]);
        let id = $(event.target.childNodes[1]).attr('id');
+       console.log(id);
        let button = event.target;
+       $('#' +id).attr('src', this.props.heaterKit[id].url);
+       console.log($(id).attr('src'));
        playAudio(id);
        $(button).css('background-color', '#FFA500');
             
@@ -155,8 +162,8 @@ class DrumContainer extends React.Component {
             <div id = "drum-machine-content">
             <div className ="numpad">
                 <div className = "drum-machine-row">
-                    <button className = "drum-machine-button" onClick = {this.handleClick} value = 'yes'> <audio className = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>Q </button>
-                    <button className = "drum-machine-button" onClick = {this.handleClick}  >  <audio className = "clip"  id = 'W' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"></audio>W </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick} value = 'yes'> <audio className = "clip"  id = 'Q' src = ""></audio>Q </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick}  >  <audio className = "clip"  id = 'W' src = ""></audio>W </button>
                     <button className = "drum-machine-button" onClick = {this.handleClick} > <audio className = "clip"  id = 'E' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"></audio> E </button>
                 </div>
 
@@ -222,6 +229,7 @@ const mapStateToProps = (state) => {
         volume: state.volume,
         kit: state.kit,
         displayText: state.displayText,
+        heaterKit: state.heaterKit,
     }
 }
 
