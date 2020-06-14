@@ -108,13 +108,17 @@ class DrumContainer extends React.Component {
     }
     
     handleClick(event) {
-        console.log(event.target.childNodes[1]);
+        console.log(event.target);
         //console.log('id ' + id);
        // playAudio(event.target.childNodes[1]);
        let id = $(event.target.childNodes[1]).attr('id');
+       let button = event.target;
        playAudio(id);
+       $(button).css('background-color', '#FFA500');
+            
+     setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
         console.log('okay this was clicked again');
-        console.log(this);
+        console.log(this.props);
     }
 
     componentDidMount() {
@@ -146,15 +150,15 @@ class DrumContainer extends React.Component {
                 </div>
 
                 <div className = "drum-machine-row">
-                    <button className = "drum-machine-button" > <audio className = "clip"  id = 'A' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"></audio>A </button>
-                    <button className = "drum-machine-button" > <audio className = "clip"  id = 'S' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"></audio>S </button>
-                    <button className = "drum-machine-button" > <audio className = "clip"  id = 'D' src = "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"></audio>D </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'A' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"></audio>A </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'S' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"></audio>S </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'D' src = "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"></audio>D </button>
                 </div>
 
                 <div className = "drum-machine-row">
-                    <button className = "drum-machine-button" > <audio className = "clip"  id = 'Z' src = "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"></audio>Z </button>
-                    <button className = "drum-machine-button" > <audio className = "clip"  id = 'X' src = "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"></audio>X </button>
-                    <button className = "drum-machine-button" > <audio className = "clip"  id = 'C' src = "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"></audio>C </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'Z' src = "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"></audio>Z </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'X' src = "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"></audio>X </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'C' src = "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"></audio>C </button>
                 </div>
                 </div>
                 <div className ="buttons">
