@@ -24,9 +24,9 @@ const DISPLAY = "DISPLAY";
 const powerReducer = (state = true, action) => {
     switch(action.type) {
         case ACTION:
-            return !state
+            return !state;
         default: 
-            return state
+            return state;
 }
 }
 const volumeReducer = (state = 100, action) => {
@@ -39,7 +39,7 @@ const volumeReducer = (state = 100, action) => {
         case SUBTRACTVOLUME:
             return state - parseInt(action.subtractValue);
         default:
-            return state
+            return state;
         
     }
 }
@@ -164,6 +164,7 @@ class DrumContainer extends React.Component {
     }
     
     handleClick(event) {
+        if(this.props.power){
         console.log(event.target);
         //console.log('id ' + id);
        // playAudio(event.target.childNodes[1]);
@@ -178,10 +179,17 @@ class DrumContainer extends React.Component {
      setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
        
     $('#display-text').html(this.props.heaterKit[id].name);
+        }
+        else {
+            console.log('make sure power is turned on!');
+        }
     }
 
     powerButtonClick() {
+        console.log(this.props.power);
         console.log('power button was clicked');
+        this.props.actionDispatch();
+        console.log(this.props.power);
     }
 
     bankButtonClick() {
