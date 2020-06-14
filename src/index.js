@@ -17,10 +17,10 @@ const CURRENTVOLUME = 'CURRENTVOLUME';
 const DISPLAY = "DISPLAY";
 
 
-// reudux logic
+// redux logic
 
 
-//reducer to be combined in one reducer
+//reducers to be combined in one reducer
 const powerReducer = (state = true, action) => {
     switch(action.type) {
         case ACTION:
@@ -36,11 +36,8 @@ const volumeReducer = (state = 100, action) => {
         case ADDVOLUME: 
             console.log(action.addValue);
             return state + parseInt(action.addValue);
-        
-
         case SUBTRACTVOLUME:
             return state - parseInt(action.subtractValue);
-
         default:
             return state
         
@@ -58,7 +55,7 @@ const kitReducer = (state = 'heaterKit', action) => {
     }
 }
 
-const displayReducer = (state = 'hurrdurr', action) => {
+const displayReducer = (state = '', action) => {
    switch(action.type)  {
        case DISPLAY:
            return action.displayText;
@@ -100,9 +97,7 @@ function playAudio(id) {
 class DrumContainer extends React.Component {
     constructor(props) {
         super(props)
-
         this.handleChange = this.handleChange.bind(this);
-       
     }
     handleChange(event) {
         this.props.currentVolumeDispatch(event.target.value);
@@ -114,10 +109,12 @@ class DrumContainer extends React.Component {
 
     componentDidMount() {
         $(".drum-machine-button").click(function(event) {
+            console.log('button clicked');
+            console.log(this.childNodes[1]);
+            let audioElement = this.childNodes[1];
+            let id = $(audioElement).attr('id');
             let button = this;
-            console.log('event is');
-            console.log(event.target.id);
-            playAudio('Q');
+            playAudio(id);
             $(button).css('background-color', '#FFA500');
             
             setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
@@ -135,7 +132,7 @@ class DrumContainer extends React.Component {
             <div className ="numpad">
                 <div className = "drum-machine-row">
                     <button className = "drum-machine-button" > <audio className = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>Q </button>
-                    <button className = "drum-machine-button" > W </button>
+                    <button className = "drum-machine-button" >  <audio className = "clip"  id = 'W' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"></audio>W </button>
                     <button className = "drum-machine-button" > E </button>
                 </div>
 
