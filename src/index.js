@@ -119,6 +119,7 @@ class DrumContainer extends React.Component {
      setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
         console.log('okay this was clicked again');
         console.log(this.props);
+    $('#display-text').html(id);
     }
 
     componentDidMount() {
