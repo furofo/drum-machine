@@ -253,6 +253,15 @@ class DrumContainer extends React.Component {
     bankButtonClick() {
        this.props.kitDispatch(this.props.kit);
        console.log(this.props.kit);
+       setTimeout(() => {
+        if(this.props.kit == 'pianoKit') {
+            $('#display-text').html('Piano Kit');
+           }
+    
+           else {
+            $('#display-text').html('Heater Kit');
+           }
+       }, 50); 
     }
 
     componentDidMount() {
