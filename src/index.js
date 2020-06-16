@@ -111,12 +111,50 @@ const pianoKitReducer = (
             name: 'Chord 1',
             url: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3',
         },
+
+        W: {
+            name: 'Chord 2',
+            url: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3',
+        },
+
+        E: {
+            name: 'Chord 3',
+            url: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3',
+        },
+
+        A: {
+            name: 'Light',
+            url: 'https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3',
+        },
+        S: {
+            name: 'Ohh',
+            url: 'https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3',
+        },
+        D: {
+            name: 'BLD H1',
+            url: 'https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3',
+        },
+        Z: {
+            name: 'Kick 1',
+            url: 'https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3',
+        },
+        X: {
+            name: 'Stick 1',
+            url: 'https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3',
+        },
+        C: {
+            name: 'Brk',
+            url: 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3',
+        }
+
+
     }
 ) => {
     return state;
 }
 const pianoKitSounds = {
     Q: <audio className = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>
+    
 }
 
 // this is reducer that will combine all reducers
@@ -193,7 +231,7 @@ class DrumContainer extends React.Component {
        $(button).css('background-color', '#FFA500');
             
      setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
-           
+     $('#display-text').html(this.props.pianoKit[id].name);
         }
 
             }
