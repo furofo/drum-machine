@@ -310,7 +310,7 @@ class DrumContainer extends React.Component {
                 </div>
                 <div className = "center powerbutton">
                 <label className = "switch">
-                    <input type = "checkbox" />
+                    <input type = "checkbox" checked/>
                      <span className = "slider" id = "power-button" onClick = {this.powerButtonClick}></span>  
                 </label>
                 </div>
