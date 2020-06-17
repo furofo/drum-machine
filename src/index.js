@@ -15,6 +15,7 @@ const ADDVOLUME = 'ADDVOLUME';
 const SUBTRACTVOLUME = 'SUBTRACTVOLUME';
 const CURRENTVOLUME = 'CURRENTVOLUME';
 const DISPLAY = "DISPLAY";
+const CHECKED = "CHECKED";
 
 
 // redux logic
@@ -157,8 +158,13 @@ const pianoKitSounds = {
     
 }
 
-const bankCheckedReducer = (state = true) => {
-    return state;
+const bankCheckedReducer = (state = true, action) => {
+    switch (action.type) {
+        case CHECKED:
+            return action.checked;
+        default: 
+            return state;
+    }
 }
 
 // this is reducer that will combine all reducers
@@ -268,6 +274,7 @@ class DrumContainer extends React.Component {
            }
        }, 50); 
        console.log('bank button clicke hey hey hey');
+       this.props.bankCheckDispatch(this.props.isBankChecked);
        console.log(this.props.isBankChecked);
     }
 
@@ -335,7 +342,7 @@ class DrumContainer extends React.Component {
                 </div>
                 <div className = "center powerbutton">
                 <label className = "switch">
-                    <input type = "checkbox" checked/>
+                    <input type = "checkbox" defaultChecked = {this.props.isBankChecked}/>
                      <span className = "slider" id = "bank-button" onClick = {this.bankButtonClick}></span>  
                 </label>
                 </div>
@@ -392,10 +399,10 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({type: CURRENTVOLUME, currentVolume: volume});
         },
         displayDispatch: (text) => {
-            dispatch({type: DISPLAY, displayText: text})
+            dispatch({type: DISPLAY, displayText: text});
         },
         bankCheckDispatch: (state) => {
-           dispatch(!state)
+           dispatch({type: CHECKED, checked: !state});
         }
     }
 }
