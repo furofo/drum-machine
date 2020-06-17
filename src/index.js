@@ -301,6 +301,24 @@ class DrumContainer extends React.Component {
             setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
             
         }); */
+
+        $(document).keypress(function(e){
+            if (e.which == 13){
+                $("Q").click();
+
+            }
+        });
+
+        $(function() {
+            $(document).keydown(function(e) {
+             switch(e.which) { 
+                 case 38: // up key
+                     alert("up key event called")
+                     
+                 break; 
+             } 
+         });
+         });
     }
     componentDidUpdate() {
         
