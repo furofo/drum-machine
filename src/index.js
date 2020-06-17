@@ -157,6 +157,10 @@ const pianoKitSounds = {
     
 }
 
+const bankCheckedReducer = (state = true) => {
+    return state;
+}
+
 // this is reducer that will combine all reducers
 const rootReducer = combineReducers({
     power: powerReducer,
@@ -165,6 +169,7 @@ const rootReducer = combineReducers({
     displayText: displayReducer,
     heaterKit: heaterKitReducer,
     pianoKit: pianoKitReducer,
+    isBankChecked: bankCheckedReducer,
 })
 
 
@@ -252,7 +257,7 @@ class DrumContainer extends React.Component {
 
     bankButtonClick() {
        this.props.kitDispatch(this.props.kit);
-       console.log(this.props.kit);
+       
        setTimeout(() => {
         if(this.props.kit == 'pianoKit') {
             $('#display-text').html('Piano Kit');
@@ -262,6 +267,8 @@ class DrumContainer extends React.Component {
             $('#display-text').html('Heater Kit');
            }
        }, 50); 
+       console.log('bank button clicke hey hey hey');
+       console.log(this.props.isBankChecked);
     }
 
     componentDidMount() {
@@ -309,7 +316,7 @@ class DrumContainer extends React.Component {
                          <h3>Power</h3>
                 </div>
                 <div className = "center powerbutton">
-                <label className = "switch">
+                <label className = "switch" id = "power-switch">
                     <input type = "checkbox" checked/>
                      <span className = "slider" id = "power-button" onClick = {this.powerButtonClick}></span>  
                 </label>
@@ -328,7 +335,7 @@ class DrumContainer extends React.Component {
                 </div>
                 <div className = "center powerbutton">
                 <label className = "switch">
-                    <input type = "checkbox" />
+                    <input type = "checkbox" checked/>
                      <span className = "slider" id = "bank-button" onClick = {this.bankButtonClick}></span>  
                 </label>
                 </div>
@@ -338,7 +345,10 @@ class DrumContainer extends React.Component {
             </div>
             
             </div>
-                
+            <label >
+                    <input type = "checkbox" defaultChecked = 'True'/>
+                      
+                </label>
             </div>
         )
     }
@@ -356,6 +366,7 @@ const mapStateToProps = (state) => {
         displayText: state.displayText,
         heaterKit: state.heaterKit,
         pianoKit: state.pianoKit,
+        isBankChecked: state.isBankChecked,
     }
 }
 
@@ -382,6 +393,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         displayDispatch: (text) => {
             dispatch({type: DISPLAY, displayText: text})
+        },
+        bankCheckDispatch: (state) => {
+           dispatch(!state)
         }
     }
 }

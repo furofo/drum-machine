@@ -149,6 +149,12 @@ body{
   transform: translateX(22px);
 }
 
+/*#power-switch input:checked  + #power-button:before {
+  -webkit-transform: translateX(-22px);
+  -ms-transform: translateX(-22px);
+  transform: translateX(-22px);
+} */
+
 /* volume button logic */
 .slidecontainer{
     display: flex;
@@ -160,17 +166,6 @@ body{
       width: 80%;
   }
   
-  .slider2{
-    /*-webkit-appearance: none; */
-    width: 100%;
-    /*appearance: none; */
-    height: 25px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-  }
 
 @media only screen and (min-width: 800px){
     .buttons {
