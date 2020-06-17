@@ -158,7 +158,7 @@ const pianoKitSounds = {
     
 }
 
-const bankCheckedReducer = (state = true, action) => {
+const bankCheckedReducer = (state = false, action) => {
     switch (action.type) {
         case CHECKED:
             return action.checked;
@@ -166,6 +166,16 @@ const bankCheckedReducer = (state = true, action) => {
             return state;
     }
 }
+
+const powerCheckedReducer = (state = true, action) => {
+    switch (action.type) {
+        case CHECKED:
+            return action.checked;
+        default: 
+            return state;
+    }
+}
+
 
 // this is reducer that will combine all reducers
 const rootReducer = combineReducers({
@@ -176,6 +186,7 @@ const rootReducer = combineReducers({
     heaterKit: heaterKitReducer,
     pianoKit: pianoKitReducer,
     isBankChecked: bankCheckedReducer,
+    isPowerChecked: powerCheckedReducer,
 })
 
 
@@ -323,8 +334,8 @@ class DrumContainer extends React.Component {
                          <h3>Power</h3>
                 </div>
                 <div className = "center powerbutton">
-                <label className = "switch" id = "power-switch">
-                    <input type = "checkbox" checked/>
+                <label className = "switch">
+                    <input type = "checkbox" defaultChecked = {this.props.isPowerChecked}/>
                      <span className = "slider" id = "power-button" onClick = {this.powerButtonClick}></span>  
                 </label>
                 </div>
@@ -374,6 +385,7 @@ const mapStateToProps = (state) => {
         heaterKit: state.heaterKit,
         pianoKit: state.pianoKit,
         isBankChecked: state.isBankChecked,
+        isPowerChecked: state.isPowerChecked,
     }
 }
 
@@ -403,6 +415,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         bankCheckDispatch: (state) => {
            dispatch({type: CHECKED, checked: !state});
+        },
+        powerCheckDispatch: (state) => {
+            dispatch({type: CHECKED, checked: !state});
         }
     }
 }
