@@ -219,7 +219,7 @@ class DrumContainer extends React.Component {
     handleChange(event) {
         this.props.currentVolumeDispatch(event.target.value);
         setTimeout(function(){$('#display-text').fadeIn()}, 10);
-        $('#display-text').html('Volume' + this.props.displayDispatch(event.target.value));
+        $('#display-text').html(this.props.displayDispatch('Volume: ' + event.target.value));
         setTimeout(function(){$('#display-text').fadeOut()}, 2000);
     }
     
