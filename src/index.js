@@ -310,19 +310,47 @@ class DrumContainer extends React.Component {
         $(document).keypress(function(e){
             switch(e.which){
                 case 81:
-                    $("#q-button").click();
+                    $("q-button").click();
                     break;
             }
-            
+           
         });
 
         $(function() {
             $(document).keydown(function(e) {
              switch(e.which) { 
-                 case 38: // up key
-                 console.log('butt was clicked');
-                 $("#q-button").click();
-                 break; 
+                case 81:
+                    $("#q-button").click();
+                    break;
+
+                case 87:
+                    $("#w-button").click();
+                    break;
+
+                case 69:
+                    $("#e-button").click();
+                    break;
+                
+                case 65:
+                    $("#a-button").click();
+                    break;
+
+                case 83:
+                    $("#s-button").click();
+                    break;
+                
+                case 68:
+                    $("#d-button").click();
+                    break;
+                case 90:
+                    $("#z-button").click();
+                    break;
+                case 88:
+                    $("#x-button").click();
+                    break;
+                case 67:
+                    $("#c-button").click();
+                    break;
              } 
          });
          });
@@ -338,20 +366,20 @@ class DrumContainer extends React.Component {
             <div className ="numpad">
                 <div className = "drum-machine-row">
                     <button className = "drum-machine-button" onClick = {this.handleClick} value = 'yes' id = 'q-button'> <audio className = "clip"  id = 'Q' src = ""></audio>Q </button>
-                    <button className = "drum-machine-button" onClick = {this.handleClick}  >  <audio className = "clip"  id = 'W' src = ""></audio>W </button>
-                    <button className = "drum-machine-button" onClick = {this.handleClick} > <audio className = "clip"  id = 'E' src = ""></audio> E </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick} id = 'w-button' >  <audio className = "clip"  id = 'W' src = ""></audio>W </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick} id = 'e-button'> <audio className = "clip"  id = 'E' src = ""></audio> E </button>
                 </div>
 
                 <div className = "drum-machine-row">
-                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'A' src = ""></audio>A </button>
-                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'S' src = ""></audio>S </button>
-                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'D' src = ""></audio>D </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick} id = 'a-button'> <audio className = "clip"  id = 'A' src = ""></audio>A </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick} id = 's-button'> <audio className = "clip"  id = 'S' src = ""></audio>S </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick} id = 'd-button'> <audio className = "clip"  id = 'D' src = ""></audio>D </button>
                 </div>
 
                 <div className = "drum-machine-row">
-                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'Z' src = ""></audio>Z </button>
-                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'X' src = ""></audio>X </button>
-                    <button className = "drum-machine-button" onClick = {this.handleClick}> <audio className = "clip"  id = 'C' src = ""></audio>C </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick} id = 'z-button'> <audio className = "clip"  id = 'Z' src = ""></audio>Z </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick} id = 'x-button'> <audio className = "clip"  id = 'X' src = ""></audio>X </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick} id = 'c-button'> <audio className = "clip"  id = 'C' src = ""></audio>C </button>
                 </div>
                 </div>
                 <div className ="buttons">
