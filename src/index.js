@@ -228,10 +228,15 @@ class DrumContainer extends React.Component {
         
         if(this.props.kit == 'heaterKit'){
         console.log(event.target);
+        console.log('logging this');
+        console.log(this);
         //console.log('id ' + id);
        // playAudio(event.target.childNodes[1]);
        let id = $(event.target.childNodes[1]).attr('id');
+       console.log('loggin id');
        console.log(id);
+       $('#display-text').html(this.props.heaterKit[id].name);
+       
        let button = event.target;
        $('#' +id).attr('src', this.props.heaterKit[id].url);
        console.log($(id).attr('src'));
@@ -240,7 +245,7 @@ class DrumContainer extends React.Component {
             
      setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
        
-    $('#display-text').html(this.props.heaterKit[id].name);
+    
         }
 
         else {
@@ -304,7 +309,7 @@ class DrumContainer extends React.Component {
 
         $(document).keypress(function(e){
             if (e.which == 13){
-                $("Q").click();
+                $("q-button").click();
 
             }
         });
@@ -313,8 +318,8 @@ class DrumContainer extends React.Component {
             $(document).keydown(function(e) {
              switch(e.which) { 
                  case 38: // up key
-                     alert("up key event called")
-                     
+                 console.log('butt was clicked');
+                 $("#q-button").click();
                  break; 
              } 
          });
@@ -330,7 +335,7 @@ class DrumContainer extends React.Component {
             <div id = "drum-machine-content">
             <div className ="numpad">
                 <div className = "drum-machine-row">
-                    <button className = "drum-machine-button" onClick = {this.handleClick} value = 'yes'> <audio className = "clip"  id = 'Q' src = ""></audio>Q </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick} value = 'yes' id = 'q-button'> <audio className = "clip"  id = 'Q' src = ""></audio>Q </button>
                     <button className = "drum-machine-button" onClick = {this.handleClick}  >  <audio className = "clip"  id = 'W' src = ""></audio>W </button>
                     <button className = "drum-machine-button" onClick = {this.handleClick} > <audio className = "clip"  id = 'E' src = ""></audio> E </button>
                 </div>
