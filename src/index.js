@@ -308,10 +308,12 @@ class DrumContainer extends React.Component {
         }); */
 
         $(document).keypress(function(e){
-            if (e.which == 13){
-                $("q-button").click();
-
+            switch(e.which){
+                case 81:
+                    $("#q-button").click();
+                    break;
             }
+            
         });
 
         $(function() {
