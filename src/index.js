@@ -219,7 +219,7 @@ class DrumContainer extends React.Component {
     handleChange(event) {
         this.props.currentVolumeDispatch(event.target.value);
         setTimeout(function(){$('#display-text').fadeIn()}, 10);
-        $('#display-text').html(this.props.displayDispatch('Volume: ' + event.target.value));
+        $('#display-text').html(this.props.displayDispatch(event.target.value));
         setTimeout(function(){$('#display-text').fadeOut()}, 2000);
     }
     
@@ -233,6 +233,18 @@ class DrumContainer extends React.Component {
         //console.log('id ' + id);
        // playAudio(event.target.childNodes[1]);
        let id = $(event.target.childNodes[1]).attr('id');
+       console.log('what is volume divided by 100?');
+       console.log(this.props.volume/100);
+       
+       $(id).prop('volume', (this.props.volume / 100));
+       console.log('volume is');
+       console.log($(id).prop('volume'));
+       document.getElementById(id).volume = (this.props.volume / 100);
+       var obj   = document.getElementById(id).attributes;
+       console.log('first attempt to get attributes of html element...');
+       console.log(obj);
+       
+       console.log(document.getElementById(id).volume)
        console.log('loggin id');
        console.log(id);
        $('#display-text').html(this.props.heaterKit[id].name);
@@ -365,7 +377,7 @@ class DrumContainer extends React.Component {
             <div id = "drum-machine-content">
             <div className ="numpad">
                 <div className = "drum-machine-row">
-                    <button className = "drum-machine-button" onClick = {this.handleClick} value = 'yes' id = 'q-button'> <audio className = "clip"  id = 'Q' src = ""></audio>Q </button>
+                    <button className = "drum-machine-button" onClick = {this.handleClick} value = 'yes' id = 'q-button'> <audio className = "clip"  id = 'Q' src = ""  ></audio>Q </button>
                     <button className = "drum-machine-button" onClick = {this.handleClick} id = 'w-button' >  <audio className = "clip"  id = 'W' src = ""></audio>W </button>
                     <button className = "drum-machine-button" onClick = {this.handleClick} id = 'e-button'> <audio className = "clip"  id = 'E' src = ""></audio> E </button>
                 </div>
