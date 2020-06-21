@@ -9,20 +9,16 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux';
 import { combineReducers } from 'redux'
 
-// const declarations
+// const declarations  used to make typo mistakes harder to make
 const ACTION = 'ACTION';
 const ADDVOLUME = 'ADDVOLUME';
 const SUBTRACTVOLUME = 'SUBTRACTVOLUME';
 const CURRENTVOLUME = 'CURRENTVOLUME';
 const DISPLAY = "DISPLAY";
 const CHECKED = "CHECKED";
-
-
 // redux logic
-
-
 //reducers to be combined in one reducer
-const powerReducer = (state = true, action) => {
+const powerReducer = (state = true, action) => { //true means power on false means power off
     switch(action.type) {
         case ACTION:
             return !state;
@@ -30,22 +26,16 @@ const powerReducer = (state = true, action) => {
             return state;
 }
 }
-const volumeReducer = (state = 100, action) => {
+const volumeReducer = (state = 100, action) => { 
     switch(action.type) {
         case CURRENTVOLUME:
-            return action.currentVolume;
-        case ADDVOLUME: 
-            console.log(action.addValue);
-            return state + parseInt(action.addValue);
-        case SUBTRACTVOLUME:
-            return state - parseInt(action.subtractValue);
+            return action.currentVolume; 
         default:
             return state;
         
     }
 }
-
-const kitReducer = (state = 'heaterKit', action) => {
+const kitReducer = (state = 'heaterKit', action) => { // used to switch between sound tracks or kits
     switch(action.type) {
         case 'pianoKit':
             return 'heaterKit';
@@ -55,8 +45,7 @@ const kitReducer = (state = 'heaterKit', action) => {
             return state;
     }
 }
-
-const displayReducer = (state = '', action) => {
+const displayReducer = (state = '', action) => { // this is text that goes into display block beneath power button
    switch(action.type)  {
        case DISPLAY:
            return action.displayText;
@@ -64,8 +53,7 @@ const displayReducer = (state = '', action) => {
             return state;
    }
 }
-
-const heaterKitReducer = (state = {
+const heaterKitReducer = (state = { //object with all sounds and names for heater kit
     Q: {
         name: 'Heater-1', 
         url:'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3',
@@ -105,8 +93,7 @@ const heaterKitReducer = (state = {
                                     }) => {
     return state;
 };
-
-const pianoKitReducer = (
+const pianoKitReducer = ( // object for all pianoKit names and sounds
     state = {
         Q: {
             name: 'Chord 1',
@@ -153,12 +140,7 @@ const pianoKitReducer = (
 ) => {
     return state;
 }
-const pianoKitSounds = {
-    Q: <audio className = "clip"  id = 'Q' src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>
-    
-}
-
-const bankCheckedReducer = (state = false, action) => {
+const bankCheckedReducer = (state = false, action) => { //used for bank toggle button had to move logic for checked into react
     switch (action.type) {
         case CHECKED:
             return action.checked;
@@ -167,7 +149,7 @@ const bankCheckedReducer = (state = false, action) => {
     }
 }
 
-const powerCheckedReducer = (state = true, action) => {
+const powerCheckedReducer = (state = true, action) => { //used for power toggle button had to move logic for checked into react
     switch (action.type) {
         case CHECKED:
             return action.checked;
@@ -175,8 +157,6 @@ const powerCheckedReducer = (state = true, action) => {
             return state;
     }
 }
-
-
 // this is reducer that will combine all reducers
 const rootReducer = combineReducers({
     power: powerReducer,
@@ -187,20 +167,11 @@ const rootReducer = combineReducers({
     pianoKit: pianoKitReducer,
     isBankChecked: bankCheckedReducer,
     isPowerChecked: powerCheckedReducer,
-})
-
-
+});
+//this is store tat will get all the state asign to it
 let store = createStore(rootReducer);
-
-
-/*let buttonClick = function () {
-    console.log('a button was clicked hello there');
-   console.log(this);
-  $(this).css("background-color", "yellow");
-} */
-
 //react Logic
-function playAudio(id) {
+function playAudio(id) {  //logic to play audio on click restarts audio if already playing so you click buttons fast tor restart sound
     var audio = document.getElementById(id);
     if (audio.paused) {
         audio.play();
@@ -219,79 +190,43 @@ class DrumContainer extends React.Component {
     handleChange(event) {
         this.props.currentVolumeDispatch(event.target.value);
         setTimeout(function(){$('#display-text').fadeIn()}, 10);
-        $('#display-text').html(this.props.displayDispatch(event.target.value));
+        $('#display-text').html('Volume: ' + event.target.value);
         setTimeout(function(){$('#display-text').fadeOut()}, 2000);
     }
-    
-    handleClick(event) {
-        if(this.props.power){
-        
-        if(this.props.kit == 'heaterKit'){
-        console.log(event.target);
-        console.log('logging this');
-        console.log(this);
-        //console.log('id ' + id);
-       // playAudio(event.target.childNodes[1]);
-       let id = $(event.target.childNodes[1]).attr('id');
-       console.log('what is volume divided by 100?');
-       console.log(this.props.volume/100);
-       
-       $(id).prop('volume', (this.props.volume / 100));
-       console.log('volume is');
-       console.log($(id).prop('volume'));
-       document.getElementById(id).volume = (this.props.volume / 100);
-       var obj   = document.getElementById(id).attributes;
-       console.log('first attempt to get attributes of html element...');
-       console.log(obj);
-       
-       console.log(document.getElementById(id).volume)
-       console.log('loggin id');
-       console.log(id);
-       $('#display-text').html(this.props.heaterKit[id].name);
-       
-       let button = event.target;
-       $('#' +id).attr('src', this.props.heaterKit[id].url);
-       console.log($(id).attr('src'));
-       playAudio(id);
-       $(button).css('background-color', '#FFA500');
-            
-     setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
-       
-    
+    handleClick(event) { //click logic for sound buttons
+        if(this.props.power){ // if has power basically
+            if(this.props.kit == 'heaterKit'){ // which heater kit is it heater or piano? If heater this
+            let id = $(event.target.childNodes[1]).attr('id'); // this gets id of audio element spefically
+            document.getElementById(id).volume = (this.props.volume / 100);  // the onlyi way to manually set volume tha ti found
+            $('#display-text').html(this.props.heaterKit[id].name);
+            let button = event.target;
+            $('#' +id).attr('src', this.props.heaterKit[id].url);
+            playAudio(id);
+            $(button).css('background-color', '#FFA500');     
+            setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
+                }
+            else {
+            let id = $(event.target.childNodes[1]).attr('id');
+            document.getElementById(id).volume = (this.props.volume / 100); 
+            let button = event.target;
+            $('#' +id).attr('src', this.props.pianoKit[id].url);
+            playAudio(id);
+            $(button).css('background-color', '#FFA500');    
+            setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
+            $('#display-text').html(this.props.pianoKit[id].name);
         }
-
-        else {
-      let id = $(event.target.childNodes[1]).attr('id');
-       
-       let button = event.target;
-       $('#' +id).attr('src', this.props.pianoKit[id].url);
-       console.log($(id).attr('src'));
-       playAudio(id);
-       $(button).css('background-color', '#FFA500');
-            
-     setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
-     $('#display-text').html(this.props.pianoKit[id].name);
-        }
-
             }
-
-
-
         else {
-            console.log('make sure power is turned on!');
+            console.log('make sure power is turned on!'); // here if people inspect lol
         }
     }
 
     powerButtonClick() {
-        console.log(this.props.power);
-        console.log('power button was clicked');
-        this.props.actionDispatch();
-        console.log(this.props.power);
+        this.props.actionDispatch(); // switches state of power 
     }
 
     bankButtonClick() {
-       this.props.kitDispatch(this.props.kit);
-       
+       this.props.kitDispatch(this.props.kit); //swaps kit between pianoKit and Heater Kit
        setTimeout(() => {
         if(this.props.kit == 'pianoKit') {
             $('#display-text').html('Piano Kit');
@@ -300,35 +235,12 @@ class DrumContainer extends React.Component {
            else {
             $('#display-text').html('Heater Kit');
            }
-       }, 50); 
-       console.log('bank button clicke hey hey hey');
-       this.props.bankCheckDispatch(this.props.isBankChecked);
-       console.log(this.props.isBankChecked);
+       }, 50); // put on timeout since it takes a second to update
+       this.props.bankCheckDispatch(this.props.isBankChecked); //switches boolean state of isBankChecked prop
     }
 
     componentDidMount() {
-    /*    $(".drum-machine-button").click(function(event) {
-            
-            let audioElement = this.childNodes[1];
-            let id = $(audioElement).attr('id');
-            let button = this;
-            playAudio(id);
-            $(button).css('background-color', '#FFA500');
-            
-            setTimeout(function(){$(button).css('background-color', '#808080'); }, 50);
-            
-        }); */
-
-        $(document).keypress(function(e){
-            switch(e.which){
-                case 81:
-                    $("q-button").click();
-                    break;
-            }
-           
-        });
-
-        $(function() {
+        $(function() { // waits until component mounts and everything loads gravily
             $(document).keydown(function(e) {
              switch(e.which) { 
                 case 81:
@@ -366,9 +278,6 @@ class DrumContainer extends React.Component {
              } 
          });
          });
-    }
-    componentDidUpdate() {
-        
     }
     render(){
         return(
@@ -422,26 +331,17 @@ class DrumContainer extends React.Component {
                      <span className = "slider" id = "bank-button" onClick = {this.bankButtonClick}></span>  
                 </label>
                 </div>
-
-                </div>
-                
+                </div> 
             </div>
             
             </div>
-            <label >
-                    <input type = "checkbox" defaultChecked = 'True'/>
-                      
-                </label>
             </div>
         )
     }
 }
 
-
-
 //react-reduxLogic
-
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => { // this maps redux state to properties react can use the only thing that can change these states are dispatch
     return {
         power: state.power,
         volume: state.volume,
@@ -454,7 +354,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => { //this maps dispatch methods to properties react can use like normal. Dispatch is the only thing that can change redux state. 
     return {
         actionDispatch: () => {
             dispatch({type: ACTION})
@@ -465,12 +365,10 @@ const mapDispatchToProps = (dispatch) => {
         volumeDispatch: (volume, addOrSubtract) => {
             if(addOrSubtract == 'ADD'){
                 dispatch({type: ADDVOLUME, addValue: volume})
-
             }
             else {
                 dispatch({type: SUBTRACTVOLUME, subtractValue: volume});
-            }
-           
+            }  
         },
         currentVolumeDispatch: (volume) => {
             dispatch({type: CURRENTVOLUME, currentVolume: volume});
@@ -487,14 +385,14 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const Container = connect(mapStateToProps, mapDispatchToProps)(DrumContainer);
+const Container = connect(mapStateToProps, mapDispatchToProps)(DrumContainer); // this acutally connects redux state and react state together in a const Contaier
 class DrumContent extends React.Component {
     constructor(props) {
         super(props)
     }
-    render() {
+    render() { // here is logic to finalize connecting redux and react state together
         return(
-            <Provider store = {store}>
+            <Provider store = {store}> 
                 <Container />
             </Provider> 
         );
